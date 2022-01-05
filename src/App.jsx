@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
+import NavBar from './app/NavBar';
 import normalize from './utils/normalize';
 
 const theme = {
@@ -68,6 +69,7 @@ function App() {
       theme={theme}
     >
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route
             exact

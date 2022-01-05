@@ -28,11 +28,20 @@
   },
   "homepage": "https://github.com/han3zeng/react-starter#readme",
   "dependencies": {
+    "@mswjs/data": "^0.8.4",
+    "@reduxjs/toolkit": "^1.7.1",
+    "date-fns": "^2.12.0",
+    "faker": "^4.1.0",
+    "mock-socket": "^9.0.3",
+    "msw": "^0.36.3",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.1.1",
-    "styled-components": "^5.3.3"
+    "seedrandom": "^3.0.5",
+    "styled-components": "^5.3.3",
+    "txtgen": "^2.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -46,6 +55,7 @@
     "babel-plugin-styled-components": "^1.13.3",
     "clean-webpack-plugin": "^4.0.0",
     "connect-history-api-fallback": "^1.6.0",
+    "copy-webpack-plugin": "^10.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-alias": "^1.1.2",

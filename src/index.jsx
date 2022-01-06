@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import '@babel/polyfill';
 import App from './App';
-import store from './app/store';
+import configureAppStore from './app/store';
 import { worker } from './api/server';
 
+const store = configureAppStore();
+
 const renderPage = async () => {
-  await worker.start({ onUnhandledRequest: 'bypass' })
+  await worker.start({ onUnhandledRequest: 'bypass' });
   ReactDOM.render(
     <StrictMode>
       <Provider
@@ -22,6 +24,6 @@ const renderPage = async () => {
 
 renderPage();
 
-if (module.hot || process.env.NODE_ENV !== 'production') {
+if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept('./App.jsx', renderPage);
 }

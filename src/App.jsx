@@ -3,6 +3,8 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
 import NavBar from './app/NavBar';
+import PostsList from './features/posts/PostList';
+import AddPostForm from './features/posts/AddPostForm';
 import normalize from './utils/normalize';
 
 const theme = {
@@ -18,6 +20,14 @@ const GlobalStyle = createGlobalStyle`
     background: white;
     padding: 10px;
   }
+
+  section {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+  }
+
   button {
     background-color: white;
     outline: none;
@@ -32,8 +42,9 @@ const GlobalStyle = createGlobalStyle`
   input {
     box-sizing: border-box;
     border: 1px solid ${(props) => props.theme.formGray};
-    padding: 6px 3px;
+    padding: 8px 4px;
     outline: none;
+    width: 100%;
     &:focus {
       border: 1px solid ${(props) => props.theme.formHighlightGray};
     }
@@ -54,12 +65,30 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  textarea {
+    box-sizing: border-box;
+    resize: none;
+    padding: 8px 4px;
+    outline: none;
+    width: 100%;
+    border: 1px solid ${(props) => props.theme.formGray};
+    &:focus {
+      border: 1px solid ${(props) => props.theme.formHighlightGray};
+    }
+  }
+
   a {
     color: black;
   }
 
   h2 {
     font-size: 24px;
+  }
+
+  label {
+    > p {
+      margin-bottom: 0.5em;
+    }
   }
 `;
 
@@ -74,7 +103,14 @@ function App() {
           <Route
             exact
             path="/"
-            element={<Home />}
+            element={
+              (
+                <>
+                  <AddPostForm />
+                  <PostsList />
+                </>
+              )
+            }
           />
           <Route
             path="/test"

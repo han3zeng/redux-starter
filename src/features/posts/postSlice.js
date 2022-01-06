@@ -1,0 +1,18 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = [
+  { id: '1', title: 'First Posts', content: 'Hello!' },
+  { id: '2', title: 'Second Post', content: 'More text' },
+];
+
+const postSlice = createSlice({
+  name: 'posts',
+  initialState,
+  reducers: {},
+});
+
+export default postSlice.reducer;
+
+export const selectPosts = (state) => state.posts;
+
+export const { name } = postSlice;

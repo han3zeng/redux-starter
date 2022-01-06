@@ -76,6 +76,10 @@ function App() {
             path="/"
             element={<Home />}
           />
+          <Route
+            path="/test"
+            element={<div>test</div>}
+          />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />

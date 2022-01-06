@@ -13,7 +13,13 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: './public', to: path.resolve(process.cwd(), 'dist') },
+        {
+          from: './public',
+          to: path.resolve(process.cwd(), 'dist'),
+          globOptions: {
+            ignore: ['**/index.html'],
+          },
+        },
       ],
     }),
     new webpack.EnvironmentPlugin({

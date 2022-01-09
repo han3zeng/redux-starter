@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectPosts } from './postSlice';
+import { selectPosts } from './postsSlice';
 
 const Container = styled.article`
   border: 1px solid ${(props) => props.theme.formGray};

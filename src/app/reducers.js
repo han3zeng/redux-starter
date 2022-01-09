@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import postsReducer, { name } from '../features/posts/postSlice';
+import postsReducer, { name } from '../features/posts/postsSlice';
 
 const rootReducer = combineReducers({
   [name]: postsReducer,

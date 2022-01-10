@@ -5,7 +5,10 @@ import Home from './components/Home';
 import NavBar from './app/NavBar';
 import PostsList from './features/posts/PostList';
 import AddPostForm from './features/posts/AddPostForm';
+import SinglePostPage from './features/posts/SinglePostPage';
+import EditPostForm from './features/posts/EditPostForm';
 import normalize from './utils/normalize';
+
 
 const theme = {
   formGray: '#ccc',
@@ -79,6 +82,14 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: black;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid ${(props) => props.theme.formGray};
+    padding: 6px 5px;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid ${(props) => props.theme.formHighlightGray};
+    }
   }
 
   h2 {
@@ -113,8 +124,12 @@ function App() {
             }
           />
           <Route
-            path="/test"
-            element={<div>test</div>}
+            path="/posts/:postId"
+            element={<SinglePostPage />}
+          />
+          <Route
+            path="/editPost/:postId"
+            element={<EditPostForm />}
           />
         </Routes>
       </BrowserRouter>

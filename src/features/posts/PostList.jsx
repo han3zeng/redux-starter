@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { selectPosts } from './postsSlice';
+import PostAuthor from './PostAuthor';
 
 const Container = styled.article`
   border: 1px solid ${(props) => props.theme.formGray};
@@ -19,11 +20,15 @@ const PostsList = () => {
     id,
     content,
     title,
+    userId,
   }) => (
     <Container
       key={id}
     >
       <h3>{title}</h3>
+      <PostAuthor
+        userId={userId}
+      />
       <p>{content}</p>
       <Link
         to={`/posts/${id}`}

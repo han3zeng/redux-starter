@@ -1,8 +1,12 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = [
-  { id: '1', title: 'First Posts', content: 'Hello!' },
-  { id: '2', title: 'Second Post', content: 'More text' },
+  {
+    id: '1', title: 'First Posts', content: 'Hello!', userId: '0',
+  },
+  {
+    id: '2', title: 'Second Post', content: 'More text', userId: '1',
+  },
 ];
 
 // immer under hood
@@ -14,15 +18,13 @@ const postsSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload);
       },
-      prepare({
-        title,
-        content,
-      }) {
+      prepare({ title, content, userId }) {
         return {
           payload: {
             id: nanoid(),
             title,
             content,
+            userId,
           },
         };
       },
@@ -40,9 +42,7 @@ const postsSlice = createSlice({
 
 export default postsSlice.reducer;
 
-export const selectPost = ({
-  postId,
-}) => (state) => state.posts.find((post) => post.id === postId);
+export const selectPost = ({ postId }) => (state) => state.posts.find((post) => post.id === postId);
 
 export const selectPosts = (state) => state.posts;
 

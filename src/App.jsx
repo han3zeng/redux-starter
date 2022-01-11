@@ -40,6 +40,10 @@ const GlobalStyle = createGlobalStyle`
     &:hover {
       box-shadow: 2px 2px 2px gray;
     }
+    &:disabled {
+      box-shadow: none;
+      cursor: not-allowed;
+    }
   }
 
   input {

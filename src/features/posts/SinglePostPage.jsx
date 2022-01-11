@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectPost } from './postsSlice';
+import PostAuthor from './PostAuthor';
 
 function SinglePostPage() {
   const urlParams = useParams();
@@ -24,6 +25,9 @@ function SinglePostPage() {
     <section>
       <article className="post">
         <h2>{post.title}</h2>
+        <PostAuthor
+          userId={post.userId}
+        />
         <p className="post-content">{post.content}</p>
       </article>
       <Link

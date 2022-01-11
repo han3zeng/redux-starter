@@ -2,10 +2,18 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = [
   {
-    id: '1', title: 'First Posts', content: 'Hello!', userId: '0',
+    id: '1',
+    date: new Date().toISOString(),
+    title: 'First Posts',
+    content: 'Hello!',
+    userId: '0',
   },
   {
-    id: '2', title: 'Second Post', content: 'More text', userId: '1',
+    id: '2',
+    date: new Date().toISOString(),
+    title: 'Second Post',
+    content: 'More text',
+    userId: '1',
   },
 ];
 
@@ -22,6 +30,7 @@ const postsSlice = createSlice({
         return {
           payload: {
             id: nanoid(),
+            date: new Date().toISOString(),
             title,
             content,
             userId,

@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectPost } from './postsSlice';
 import PostAuthor from './PostAuthor';
+import TimeAgo from './TimeAgo';
+
 
 function SinglePostPage() {
   const urlParams = useParams();
@@ -27,6 +29,9 @@ function SinglePostPage() {
         <h2>{post.title}</h2>
         <PostAuthor
           userId={post.userId}
+        />
+        <TimeAgo
+          timestamp={post.date}
         />
         <p className="post-content">{post.content}</p>
       </article>

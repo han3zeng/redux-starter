@@ -36,7 +36,7 @@ function SinglePostPage() {
         <p className="post-content">{post.content}</p>
       </article>
       <Link
-        to={`/editPost/${postId}`}
+        to={`/edit-post/${postId}`}
       >
         Edit Post
       </Link>

@@ -116,23 +116,19 @@ function App() {
         <NavBar />
         <Routes>
           <Route
-            exact
             path="/"
-            element={
-              (
-                <>
-                  <AddPostForm />
-                  <PostsList />
-                </>
-              )
-            }
+            element={<PostsList />}
+          />
+          <Route
+            path="/add-post"
+            element={<AddPostForm />}
           />
           <Route
             path="/posts/:postId"
             element={<SinglePostPage />}
           />
           <Route
-            path="/editPost/:postId"
+            path="/edit-post/:postId"
             element={<EditPostForm />}
           />
         </Routes>

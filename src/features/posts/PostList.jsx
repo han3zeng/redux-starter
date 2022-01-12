@@ -17,7 +17,8 @@ const Container = styled.article`
 
 const PostsList = () => {
   const posts = useSelector(selectPosts);
-  const renderedPosts = posts.map(({
+  const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+  const renderedPosts = orderedPosts.map(({
     id,
     date,
     content,

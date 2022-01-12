@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectPost } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
-
+import ReactionButtons from './ReactionButtons';
 
 function SinglePostPage() {
   const urlParams = useParams();
@@ -35,6 +35,10 @@ function SinglePostPage() {
         />
         <p className="post-content">{post.content}</p>
       </article>
+      <ReactionButtons
+        postId={post.id}
+        reactions={post.reactions}
+      />
       <Link
         to={`/edit-post/${postId}`}
       >

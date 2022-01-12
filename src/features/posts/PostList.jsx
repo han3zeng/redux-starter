@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { selectPosts } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
+import ReactionButtons from './ReactionButtons';
 
 const Container = styled.article`
   border: 1px solid ${(props) => props.theme.formGray};
@@ -24,6 +25,7 @@ const PostsList = () => {
     content,
     title,
     userId,
+    reactions
   }) => (
     <Container
       key={id}
@@ -36,6 +38,10 @@ const PostsList = () => {
         timestamp={date}
       />
       <p>{content}</p>
+      <ReactionButtons
+        postId={id}
+        reactions={reactions}
+      />
       <Link
         to={`/posts/${id}`}
       >

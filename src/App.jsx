@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    display: inline-block;
     color: black;
     text-decoration: none;
     background-color: white;

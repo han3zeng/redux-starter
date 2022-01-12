@@ -8,6 +8,10 @@ const initialState = [
     title: 'First Posts',
     content: 'Hello!',
     userId: '0',
+    reactions: {
+      thumbsUp: 1,
+      rocket: 1,
+    },
   },
   {
     id: '2',
@@ -15,6 +19,9 @@ const initialState = [
     title: 'Second Post',
     content: 'More text',
     userId: '1',
+    reactions: {
+      eyes: 1,
+    },
   },
 ];
 
@@ -47,6 +54,13 @@ const postsSlice = createSlice({
         targetPost.content = content;
       }
     },
+    reactionAdded(state, action) {
+      const { postId, reaction } = action.payload;
+      const existingPost = state.find((post) => post.id === postId);
+      if (existingPost) {
+        existingPost.reactions[reaction] = existingPost.reactions[reaction] + 1 || 1;
+      }
+    },
   },
 });
 
@@ -58,4 +72,4 @@ export const selectPosts = (state) => state.posts;
 
 export const { name } = postsSlice;
 
-export const { postAdded, postUpdated } = postsSlice.actions;
+export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions;

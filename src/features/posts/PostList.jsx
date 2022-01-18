@@ -1,8 +1,8 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { selectPosts } from './postsSlice';
+import { selectAllPosts, fetchPosts } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
 import ReactionButtons from './ReactionButtons';
@@ -17,8 +17,17 @@ const Container = styled.article`
 `;
 
 const PostsList = () => {
-  const posts = useSelector(selectPosts);
+  const dispatch = useDispatch();
+  const postStatus = useSelector((state) => state.posts.status);
+  const posts = useSelector(selectAllPosts);
   const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+
+  useEffect(() => {
+    if (postStatus === 'idle') {
+      dispatch(fetchPosts());
+    }
+  }, [postStatus, dispatch]);
+
   const renderedPosts = orderedPosts.map(({
     id,
     date,

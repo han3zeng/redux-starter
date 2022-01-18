@@ -9,7 +9,8 @@
   },
   "rules": {
     "react/jsx-curly-newline": "error",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "no-use-before-define": ["error", { "functions": false, "classes": false, "variables": false }]
   },
   "parserOptions": {
     "ecmaVersion": 2020

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { postUpdated, selectPost } from './postsSlice';
+import { postUpdated, selectPostById } from './postsSlice';
 
 function EditPostForm() {
   const urlParams = useParams();
   const navigate = useNavigate();
   const { postId } = urlParams;
-  const post = useSelector(selectPost({
+  const post = useSelector(selectPostById({
     postId,
   }));
   const dispatch = useDispatch();

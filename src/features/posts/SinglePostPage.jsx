@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectPost } from './postsSlice';
+import { selectPostById } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
 import ReactionButtons from './ReactionButtons';
@@ -10,7 +10,7 @@ function SinglePostPage() {
   const urlParams = useParams();
   const { postId } = urlParams;
   const post = useSelector(
-    selectPost({
+    selectPostById({
       postId,
     }),
   );

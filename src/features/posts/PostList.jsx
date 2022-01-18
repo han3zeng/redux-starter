@@ -6,6 +6,8 @@ import { selectAllPosts, fetchPosts } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
 import ReactionButtons from './ReactionButtons';
+import { REQUEST_STATUS } from '../../constants';
+import Spinner from '../../components/Spinner';
 
 const Container = styled.article`
   border: 1px solid ${(props) => props.theme.formGray};
@@ -16,26 +18,18 @@ const Container = styled.article`
   }
 `;
 
-const PostsList = () => {
-  const dispatch = useDispatch();
-  const postStatus = useSelector((state) => state.posts.status);
-  const posts = useSelector(selectAllPosts);
-  const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
-
-  useEffect(() => {
-    if (postStatus === 'idle') {
-      dispatch(fetchPosts());
-    }
-  }, [postStatus, dispatch]);
-
-  const renderedPosts = orderedPosts.map(({
+const PostExcerpt = ({
+  post
+}) => {
+  const {
     id,
     date,
     content,
     title,
     userId,
     reactions
-  }) => (
+  } = post;
+  return (
     <Container
       key={id}
     >
@@ -57,11 +51,39 @@ const PostsList = () => {
         View Post
       </Link>
     </Container>
-  ));
+  )
+};
+
+const PostsList = () => {
+  const dispatch = useDispatch();
+  const postStatus = useSelector((state) => state.posts.status);
+  const error = useSelector((state) => state.posts.error);
+  const posts = useSelector(selectAllPosts);
+  const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+
+  useEffect(() => {
+    if (postStatus === REQUEST_STATUS.idle) {
+      dispatch(fetchPosts());
+    }
+  }, [postStatus, dispatch]);
+
+  const content = (() => {
+    if (postStatus === REQUEST_STATUS.loading) {
+      return <Spinner />;
+    }
+    if (postStatus === REQUEST_STATUS.succeeded) {
+      return orderedPosts.map((post) => (<PostExcerpt post={post} />));
+    }
+    if (postStatus === REQUEST_STATUS.failed) {
+      return <div>{error}</div>;
+    }
+    return null;
+  })();
+
   return (
     <section>
       <h2>Posts</h2>
-      {renderedPosts}
+      {content}
     </section>
   );
 };

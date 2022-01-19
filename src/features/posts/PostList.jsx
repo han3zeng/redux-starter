@@ -26,7 +26,7 @@ const PostExcerpt = ({
     date,
     content,
     title,
-    userId,
+    user,
     reactions
   } = post;
   return (
@@ -35,7 +35,7 @@ const PostExcerpt = ({
     >
       <h3>{title}</h3>
       <PostAuthor
-        userId={userId}
+        userId={user}
       />
       <TimeAgo
         timestamp={date}

@@ -36,7 +36,7 @@ function ReactionButtons({
     >
       {emoji}
       {' '}
-      {reactions[name] || 0}
+      {reactions && reactions[name] ? reactions[name] : 0}
     </button>
   ));
   return <Container>{reactionButtons}</Container>;

@@ -28,7 +28,7 @@ function SinglePostPage() {
       <article className="post">
         <h2>{post.title}</h2>
         <PostAuthor
-          userId={post.userId}
+          userId={post.user}
         />
         <TimeAgo
           timestamp={post.date}

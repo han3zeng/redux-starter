@@ -5,11 +5,13 @@ import '@babel/polyfill';
 import App from './App';
 import configureAppStore from './app/store';
 import { worker } from './api/server';
+import { fetchUsers } from './features/users/usersSlice';
 
 const store = configureAppStore();
 
 const renderPage = async () => {
   await worker.start({ onUnhandledRequest: 'bypass' });
+  store.dispatch(fetchUsers());
   ReactDOM.render(
     <StrictMode>
       <Provider
